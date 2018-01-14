@@ -63,4 +63,48 @@ export = XML_Export( "demo" , newXML , 1 , 1 )
 
 5) ADD Functions
 
-- XML_Add_Child_Node( xmlID as integer , nodeName as string , nodeValue as string , nodeAttr as XML_Attribute[] , comment as string , setAsActive as integer )
+- XML_Add_Child_Node( xmlID as integer , nodeName as string , nodeValue as string , nodeAttr as XML_Attribute[] , comment as string , setAsActive as integer ) : 
+
+
+---
+
+**Using different charsets**
+Loading/Exporting a file with a different charset should work for most cases automatically as long as:
+  1) If you are loading a file with a different charset from standard, make sure it is saved in an appropriate charset type in your text editor
+  2) If you are saving a file with a different charset, make sure your application supports it
+  
+As an example, the following XML file written in Cyrillic should work fine in UTF-8:
+```
+<кирилица>
+	<таг>
+		<гнездо едно="казвам" две="се" три="Иван" />
+	</таг>
+</кирилица>
+```
+
+
+**Creating custom file format**
+
+If you wish to create your own custom format, all you have to do is replace the constant values in the beginning of the XML_Parser.agc library.
+```
+#constant XML_CHAR_OPENING_BRACKET "<" // First character in node - ascii 60
+#constant XML_CHAR_CLOSING_BRACKET ">" // Last character in node - ascii 62
+#constant XML_CHAR_CLOSING_SLASH "/" // Node closing slash (second last character) - ascii 47
+#constant XML_CHAR_ATTR_DELIMITER "=" // Attribute delimiter (attribute="value") - ascii 61
+#constant XML_CHAR_QUOTATION '"' // Quotation format for attributes - ascii 34 (double quotes) ; 39 (single quotes)
+#constant XML_CHAR_TAB "	" // Tabulation - ascii 9
+#constant XML_CHAR_SPACE " " // Single space - ascii 32
+#constant XML_CHAR_COMMENT "!" // Comment block - ascii 33
+#constant XML_CHAR_HEADER "?" // Header - ascii 63
+```
+
+For example, if you want your nodes to have the following format:
+```
+[node]
+  [sub1]
+    [sub3] Some Value [/sub3]
+  [/sub2]
+[/sub1]
+```
+All you have to do is change the XML_CHAR_OPENING_BRACKET from "<" to "[" and the XML_CHAR_CLOSING_BRACKET from ">" to "]"
+You can use this line of reasoning for the rest of the constants, but they must be consistent and you must make sure to avoid conflict between them.
