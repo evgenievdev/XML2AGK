@@ -24,7 +24,7 @@ All you have to do is include the source file in your application like this and 
 
 1) Loading XML
   - (optional) create a variable of type integer and use it to store the returned array index of the XML_Load_File() function
-  - call XML_Load_File( filename , reference ) function. 
+  - call XML_Load_File( xmlFile as string , key as string ) function. 
     - The first parameter is the path to your xml file, the second parameter is a unique name you give to your xml file for future reference when accessing it dynamically in your application (useful if you load/close files a lot and don't want to keep track of array index changes) 
     
 Example: 
@@ -32,3 +32,18 @@ Example:
 local xml as integer
 xml = XML_Load_File( 'demo.xml' , 'demo' )
 ```
+
+2) Exporting/Saving XML
+  - Open a file to write in your application using OpenToWrite( file , append )
+  - Call XML_Export( key as string , file as integer , useTabs as integer , rowSpacing as integer ) on that file
+    - key is the name reference you gave that file when you loaded it
+    - file is the variable where you called the OpenToWrite method
+    - useTabs : set to true if you want to add tabulation based on the nesting level of each element (gives the file a nice organized structure)
+    - rowSpacing : the number of lines of empty space left between nodes (can be used to accomodate for extra space for comments)
+    
+Example:
+```
+newXML = OpenToWrite( "demo_new.xml" , 0 )
+export = XML_Export( "demo" , newXML , 1 , 1 )
+```
+    
