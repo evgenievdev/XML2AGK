@@ -33,7 +33,11 @@ local xml as integer
 xml = XML_Load_File( 'demo.xml' , 'demo' )
 ```
 
-2) Exporting/Saving XML
+2) Creating a blank XML file
+  - XML_Create( key as string ) : Create a new blank xml file within your application and give it a unique name reference (key parameter) ; You can access this file later by calling the XML_Get_Index() function and supplying the name you created as a parameter
+   
+
+3) Exporting/Saving XML
   - Open a file to write in your application using OpenToWrite( file , append )
   - Call XML_Export( key as string , file as integer , useTabs as integer , rowSpacing as integer ) on that file
     - key is the name reference you gave that file when you loaded it
@@ -47,23 +51,30 @@ newXML = OpenToWrite( "demo_new.xml" , 0 )
 export = XML_Export( "demo" , newXML , 1 , 1 )
 ```
 
+---
+
 **Loaded XML files are kept in a dynamic array XML_Loaded. This array can be accessed directly or through the provided methods below**
 
-3) GET Functions
+A) GET Functions
 
 - XML_Get_Index( xmlKey as string ) : Return the array index of the loaded xml file ; returns -1 if nothing is found
 - XML_Get_Node_Attributes( xmlID as integer ) : Get the currently set node's list of attributes based on the xml file index supplied by XML_Get_Index() ; returned format is an array of type XML_Attribute
 - XML_Get_Node_Attribute( xmlID as integer , attribute as string ) : Get the value of a specific attribute from the currently set node ; returned value is in string format
     
-4) SET Functions
+B) SET Functions
 
 - XML_Set_First_Child_Node( xmlID as integer ) : Set the current node to be the first child of the previously set node (i.e. go one nesting level deeper)
 - XML_Set_Next_Node( xmlID as integer ) : Find the next node within the CURRENT nesting level ; Returns -1 if the LAST node is reached , otherwise it returns 1 (useful if you want to loop through a nest's nodes using while loop)
 - XML_Set_Previous_Node( xmlID as integer ) : Find the previous node within the CURRENT nesting level ; Returns -1 if the FIRST node is reached , otherwise it returns 1
 
-5) ADD Functions
+C) ADD Functions
 
-- XML_Add_Child_Node( xmlID as integer , nodeName as string , nodeValue as string , nodeAttr as XML_Attribute[] , comment as string , setAsActive as integer ) : 
+- XML_Add_Child_Node( xmlID as integer , nodeName as string , nodeValue as string , nodeAttr as XML_Attribute[] , comment as string , setAsActive as integer ) : _Add a new node to an already existing XML file loaded in your app (this only adds the data in the app, it doesn't overwrite anything in the actual file unless you decide to call the Export method)_
+  - xmlID : the array index of the xml file you wish to edit (if you dont know the index but know the name reference use XML_Get_Index()
+  - nodeName : the name of the new node you wish to create
+  - nodeValue : The value between the opening and closing tags of the node (e.g. <node> node value here </node>) ; If you want to leave it empty, just write "" 
+  - nodeAttr : An array of type XML_Attribute which holds all the attributes you wish to add for this node (each attribute can be assigned a name and a value)
+  - comment : If you want you can add a comment above the node in your xml file (only visible when exporting)
 
 
 ---
