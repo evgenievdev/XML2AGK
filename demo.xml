@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<description>
+
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+	Pellentesque a varius mauris. Praesent rhoncus pulvinar risus non lacinia. 
+	Curabitur ullamcorper sagittis augue aliquam malesuada. 
+	Fusce et gravida lacus, sit amet consectetur ex. Vestibulum non nunc placerat, fringilla felis at, porta felis. 
+	Quisque convallis posuere lacus vitae tincidunt. Nulla quis lorem et metus mollis varius a non urna. 
+	Integer felis turpis, pulvinar a mauris sed, tristique hendrerit libero. 
+	Nulla quis arcu auctor, accumsan nisi sit amet, finibus velit.
+
+</description>
+
+<opponent width="1024" height="768">
+	
+	<opponent> random value </opponent>
+	
+	<!-- 1 = Normal opponent , 2 = Boss , 3 = Ally -->
+	<type val=" 1 " />
+	
+	<vehicle name="compact"/>
+	
+	<!-- Vehicle weight in LBS -->
+	<weight val="2600" />
+	
+	<!-- Car top speed (val/5 = speed in km/h) -->
+	<max-velocity val="1500" />
+	
+	<!-- How sharply the car can turn (sprite torque) -->
+	<turning-ability val="1.5" />
+	
+	<physics linear-damping="1.75" angular-damping="1.5" mass="1.0" friction="0.05" restitution="0.1" />
+	
+	<!--<description> Some description here </description>-->
+	 
+	<engine>
+	
+		<name val="Engine Name" dc=1 />
+		
+		<idle-rpm val="800" />
+		
+		<!-- Final drive ratio -->
+		<fdr val="3.45" />
+		
+		<!-- engine's max rpm will be calculated based on the torque curve steps -->
+		<torque-curve>
+			<tq-step val="455" />
+			<tq-step val="500" />
+			<tq-step val="520" />
+			<tq-step val="665" />
+			<tq-step val="515" />
+			<tq-step val="480" />
+			<tq-step val="420" />
+		</torque-curve>
+		
+		<!-- No need to set the max number of gears, the function will automatically calculate how many there are based on the xml file -->
+		<gearbox>
+			<gear ratio="4.23" />
+			<gear ratio="3.11" />
+			<gear ratio="2.67" />
+			<gear ratio="1.89" />
+			<gear ratio="1.20" />
+			<gear ratio="1.00" />
+		</gearbox>
+		
+	</engine>
+	
+</opponent>
