@@ -63,9 +63,10 @@ A) GET Functions
     
 B) SET Functions
 
-- XML_Set_First_Child_Node( xmlID as integer ) : Set the current node to be the first child of the previously set node (i.e. go one nesting level deeper)
+- XML_Set_First_Child_Node( xmlID as integer ) : Set the current node to be the first child of the previously set node (i.e. go one nesting level deeper) : returns -1 if there are no more nesting levels there, otherwise returns 1
 - XML_Set_Next_Node( xmlID as integer ) : Find the next node within the CURRENT nesting level ; Returns -1 if the LAST node is reached , otherwise it returns 1 (useful if you want to loop through a nest's nodes using while loop)
 - XML_Set_Previous_Node( xmlID as integer ) : Find the previous node within the CURRENT nesting level ; Returns -1 if the FIRST node is reached , otherwise it returns 1
+- XML_Set_Parent_Node( xmlID as integer ) : Set the current node to be the previously set node's parent (i.e. go one nesting level back) ; returns -1 if there are no nodes before the current one (i.e. this is the root node) , otherwise returns 1
 
 C) ADD Functions
 
