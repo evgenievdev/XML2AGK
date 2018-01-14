@@ -442,12 +442,28 @@ function XML_Set_First_Child_Node( xmlID as integer )
 	
 	// If there are no defined child nodes at this level, exit function
 	if nNum < 1 then exitfunction XML_FALSE
-	
  
 	// Increase nesting level and set node to the first one
 	XML_Loaded[ xmlID ].level = XML_Loaded[ xmlID ].level + 1
 	XML_Loaded[ xmlID ].node = 1
 
+	
+endfunction XML_TRUE
+
+function XML_Set_Parent_Node( xmlID as integer )
+	
+	local cLevel as integer
+	local cNode as integer
+	
+	cLevel = XML_Loaded[ xmlID ].level
+	cNode = XML_Loaded[ xmlID ].node
+	
+	//If this is the root node, exit function 
+	if cLevel = 0 then exitfunction XML_FALSE
+	
+	// Decrease nesting level and set node to the first one
+	XML_Loaded[ xmlID ].level = XML_Loaded[ xmlID ].level - 1
+	XML_Loaded[ xmlID ].node = 1
 	
 endfunction XML_TRUE
 
