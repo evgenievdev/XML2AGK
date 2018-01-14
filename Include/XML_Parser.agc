@@ -98,7 +98,7 @@ endfunction XML_TRUE
 function XML_Create( key as string )
 	
 	// If an xml file with this key already exists, remove it 
-	if XML_Get_Index( key ) = XML_FALSE then exitfunction XML_FALSE
+	if XML_Get_Index( key ) = XML_TRUE then exitfunction XML_FALSE
 	
 	local file as XML_Structure
 	local level as XML_Level
