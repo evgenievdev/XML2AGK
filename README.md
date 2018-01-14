@@ -4,6 +4,9 @@ XML Parser for App Game Kit (Tier 1). Tested and developed for AGK V2, however i
 
 This library is written for Tier 1 app development using Basic.
 
+It works using a dynamic array (XML_Loaded[]) which stores any XML files you load into your application and can be accessed at any time.
+Each XML file is divided into nesting levels and nodes within each nesting level. The library works with simple array indexes or assigned keys for each file for dynamic access (similar to a hash table).
+
 All you have to do is include the source file in your application like this and follow the usage instructions below
 
 ```
@@ -49,6 +52,12 @@ Example:
 ```
 newXML = OpenToWrite( "demo_new.xml" , 0 )
 export = XML_Export( "demo" , newXML , 1 , 1 )
+```
+
+4) Removing XML file from application
+ - To remove a loaded file from your application's memory, call the XML_Remove function ; You need the array index of the file ; If you don't know the array index but know the key reference you have used when loading/creating the file, call the XML_Get_Index( key ) method to get the array index
+```
+XML_Remove( id as integer )
 ```
 
 ---
