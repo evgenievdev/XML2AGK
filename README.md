@@ -4,6 +4,12 @@ XML Parser for App Game Kit (Tier 1). Tested and developed for AGK V2, however i
 
 This library is written for Tier 1 app development using Basic.
 
+All you have to do is include the source file in your application like this and follow the usage instructions below
+
+```
+#include "Include/XML_Parser.agc"
+```
+
 ---
 
 **Features**
