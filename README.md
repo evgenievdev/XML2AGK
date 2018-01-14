@@ -48,6 +48,8 @@ xml = XML_Load_File( 'demo.xml' , 'demo' )
     - useTabs : set to true if you want to add tabulation based on the nesting level of each element (gives the file a nice organized structure)
     - rowSpacing : the number of lines of empty space left between nodes (can be used to accomodate for extra space for comments)
     
+    **NOTE:** Due to the way AGK deals with file reading/writing, if you use OpenToWrite to save the XML file it will be located in _C:\Users\your_username\AppData\Local\AGKApps\your_project_name\_ folder if you are using Windows. 
+    
 Example:
 ```
 newXML = OpenToWrite( "demo_new.xml" , 0 )
